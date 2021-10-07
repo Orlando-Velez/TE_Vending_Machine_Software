@@ -3,6 +3,7 @@ package com.techelevator;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Product {
     //Instance Variables
@@ -26,7 +27,5 @@ public class Product {
     public BigDecimal getPrice(){return price;}
     public String getItemType() {return itemType;}
 
-    //Method
-    public Map<String, BigDecimal> itemCost = new HashMap<>();
 
 }
