@@ -2,7 +2,7 @@ package com.techelevator;
 
 import com.techelevator.view.Menu;
 
-public class VendingMachineCLI {
+public class VendingMachineCLI extends Inventory{
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
@@ -21,11 +21,15 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
+				for (String[] display : getFile()) {
+					System.out.println(display[0] + " " + display[1] + " " + display[2]  + " Quantity: " + productQuantity());
+				}
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				// do purchase
 			}
 			else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
 				//exit menu
+				System.exit(1);
 			}
 		}
 	}

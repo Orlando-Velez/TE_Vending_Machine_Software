@@ -14,6 +14,11 @@ public class Product {
     private String itemType;
 
     //Constructor
+    public Product(String itemName, BigDecimal price){
+        this.itemName = itemName;
+        this.price = price;
+    }
+
     public Product(String location, String itemName, BigDecimal price, String itemType) {
         this.location = location;
         this.itemName = itemName;

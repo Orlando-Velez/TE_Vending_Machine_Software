@@ -3,11 +3,10 @@ package com.techelevator;
 import java.io.File;
 import java.math.BigDecimal;
 
-public class Beverages extends Product{
+public class Beverages extends Product implements Sellable{
 
-    public Beverages(String location, String itemName, BigDecimal price, String itemType) {
-        super(location, itemName, price, itemType);
+    public Beverages(String itemName, BigDecimal price) {
+        super(itemName, price);
     }
-
 
 }

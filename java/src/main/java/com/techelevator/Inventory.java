@@ -8,9 +8,9 @@ public class Inventory {
 
     File fileInfo = new File("vendingmachine.csv");
 
-    public List<String[]> getFile() {
+    public ArrayList<String[]> getFile() {
 
-        List<String[]> fileArray = new ArrayList<>();
+        ArrayList<String[]> fileArray = new ArrayList<>();
 
         try (Scanner reader = new Scanner(fileInfo)) {
             while (reader.hasNextLine()) {
@@ -21,8 +21,22 @@ public class Inventory {
         } catch (FileNotFoundException ex) {
             System.out.println("File not found: " + ex.getMessage());
         }
-
-       return null;
+       return fileArray;
     }
+    // Set default values at 5
+    public int productQuantity() {
+        //this is the counter
+        int startCount = 5;
+            for (int i = startCount; i > 0; i--) {
+                if (startCount > 0) {
+                    return startCount--;
+//                    return startCount;
+                } else {
+                    return 0;
+                }
+            }
+            return 0;
+    }
+
 
 }
