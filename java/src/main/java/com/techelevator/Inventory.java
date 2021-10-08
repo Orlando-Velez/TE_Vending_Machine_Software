@@ -21,6 +21,7 @@ public class Inventory {
         } catch (FileNotFoundException ex) {
             System.out.println("File not found: " + ex.getMessage());
         }
+
        return fileArray;
     }
     // Set default values at 5
@@ -30,11 +31,12 @@ public class Inventory {
             for (int i = startCount; i > 0; i--) {
                 if (startCount > 0) {
                     return startCount--;
-//                    return startCount;
-                } else {
+                }
+                else {
                     return 0;
                 }
             }
+
             return 0;
     }
 
