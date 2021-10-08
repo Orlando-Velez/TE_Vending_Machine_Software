@@ -6,5 +6,6 @@ public interface Sellable {
 
    String getItemName();
    BigDecimal getPrice();
+//   String message();
 
 }

@@ -4,7 +4,7 @@ import com.techelevator.view.Menu;
 
 import java.util.Scanner;
 
-public class VendingMachineCLI extends Inventory{
+public class VendingMachineCLI extends Inventory {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
@@ -29,13 +29,14 @@ public class VendingMachineCLI extends Inventory{
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
 				for (String[] display : getFile()) {
-					System.out.println(display[0] + " " + display[1] + " " + display[2]  + " Quantity: " + productQuantity());
+					System.out.println(display[0] + ": " + display[1] + " $" + display[2]);
 				}
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				while (true) {
 					String purchase = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					if(purchase.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
 						System.out.println("Current Money Provided: ");
+						System.out.println(getInfoFromLine());
 					}
 					if (purchase.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)){
 
