@@ -1,12 +1,16 @@
 package com.techelevator;
 
+import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.*;
 
+
+
 public class Inventory {
 
+    public static final int START_QUANTITY = 5;
 
     File fileInfo = new File("vendingmachine.csv");
 
@@ -39,10 +43,23 @@ public class Inventory {
                     itemPrice = new BigDecimal(display[2]);
                 } catch (NumberFormatException ex) {
                     String message = String.format("Failed to parse info line");
+                    System.out.println(message);
                 }
             if (itemType.equals("Drink")) {
-                Beverages beverage = new Beverages(itemName, itemPrice);
+                Product beverage = new Product(slot, itemName, itemPrice, itemType);
                 map.put(slot, beverage);
+            }
+            else if (itemType.equals("Chip")) {
+                Product chips = new Product(slot, itemName, itemPrice, itemType);
+                map.put(slot, chips);
+            }
+            else if (itemType.equals("Candy")) {
+                Product candy = new Product(slot, itemName, itemPrice, itemType);
+                map.put(slot, candy);
+            }
+            else if (itemType.equals("Gum")) {
+                Product gum = new Product(slot,itemName,itemPrice,itemType);
+                map.put(slot, gum);
             }
 
             for(Map.Entry<String, Product> entry : map.entrySet()) {
@@ -53,7 +70,7 @@ public class Inventory {
             }
 
         }
-        return null;
+        return map;
     }
 
 }

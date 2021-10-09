@@ -2,10 +2,8 @@ package com.techelevator;
 
 import java.math.BigDecimal;
 
-public interface Sellable {
+public abstract interface Sellable {
 
-   String getItemName();
-   BigDecimal getPrice();
-//   String message();
+   String message();
 
 }
