@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public class VendingMachineCLI extends Inventory{
 
-	private Inventory vendingMachineInventory;
+	private Inventory vendingMachineInventory = new Inventory();
 	private Chips chips;
 	private Beverages beverages;
 	private Product product;
@@ -37,7 +37,7 @@ public class VendingMachineCLI extends Inventory{
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
 				for (String[] display : getFile()) {
-					String formatString = String.format("%s: %-18s  $%-5s Quantity:%d", display[0], display[1], display[2] ,START_QUANTITY);
+					String formatString = String.format("%s: %-18s  $%-5s Quantity: %d", display[0], display[1], display[2], vendingMachineInventory.startQuantity);
 					System.out.println(formatString);
 				}
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
@@ -45,13 +45,13 @@ public class VendingMachineCLI extends Inventory{
 					String purchase = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					if(purchase.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
 						System.out.println();
-						String moneyInput = moneyToFeed();
-						String formatString = String.format("Current Money Provided: $%s", moneyInput);
+						moneyToFeed();
+						String formatString = String.format("Current Money Provided: $%s", balance);
 						System.out.println(formatString);
 					}
 					if (purchase.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)){
 						for (String[] display : getFile()) {
-							String formatString = String.format("%s: %-18s $%-5s (%s) Quantity:%d", display[0], display[1], display[2], display[3], START_QUANTITY);
+							String formatString = String.format("%s: %-18s $%-5s (%s) Quantity:%d", display[0], display[1], display[2], display[3], decreaseCount());
 							System.out.println(formatString);
 						}
 						System.out.println();
@@ -68,7 +68,7 @@ public class VendingMachineCLI extends Inventory{
 						else if(choiceInput.startsWith("D")){
 							System.out.println(getInfoFromLine().get(choiceInput).getItemName() + " $" + getInfoFromLine().get(choiceInput).getPrice());
 						}
-						System.out.println("Your Change is: $" + balanceRemaining());
+						System.out.println("Your Remaining Balance is: $" + balanceRemaining(getInfoFromLine().get(choiceInput)));
 						}
 //					}	if(itemOption.){
 //						System.out.println("***Item Does Not Exist Returning To Menu***");

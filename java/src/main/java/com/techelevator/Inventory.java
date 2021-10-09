@@ -8,11 +8,13 @@ import java.util.*;
 
 
 public class Inventory {
+    BigDecimal balance = BigDecimal.ZERO;
+    Integer startQuantity = 5;
 
-    public static final int START_QUANTITY = 5;
     Scanner reader = new Scanner(System.in);
 
     File fileInfo = new File("vendingmachine.csv");
+
 
     public ArrayList<String[]> getFile() {
 
@@ -67,11 +69,13 @@ public class Inventory {
         return map;
     }
 
-    public String moneyToFeed() {
+    public BigDecimal moneyToFeed() {
 
         System.out.println("Insert money in  whole dollar amounts: $1, $2, $5, or $10");
         String userInput = reader.nextLine();
-        return userInput;
+        BigDecimal money = new BigDecimal(userInput);
+        balance = balance.add(money);
+        return balance;
     }
 
     public String itemCode(){
@@ -82,12 +86,24 @@ public class Inventory {
         return userInput;
     }
 
-    public BigDecimal balanceRemaining() {
-        BigDecimal moneyIn = new BigDecimal(moneyToFeed());
-        String itemOption = itemCode();
-        BigDecimal costOfItem = new BigDecimal(String.valueOf(getInfoFromLine().get(itemOption).getPrice()));
-        BigDecimal balance = moneyIn.subtract(costOfItem);
+    public BigDecimal balanceRemaining(Product item) {
+        balance = balance.subtract(item.getPrice());
         return balance;
     }
+
+    public Integer stockQuantity(Product quantity) {
+       int stock = quantity.getCount();
+       return stock;
+    }
+//    public Integer decrease(Product quantity) {
+//        int stock = quantity.decreaseCount();
+//        return stock;
+//    }
+    public int get() {return ;}
+public int decreaseCount(){
+    startQuantity -= 1;
+    return startQuantity;
+}
+
 
 }

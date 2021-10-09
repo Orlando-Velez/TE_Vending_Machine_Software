@@ -31,9 +31,12 @@ public class Product {
     public String getItemType() {return itemType;}
     public int getCount(){return count;}
 
-    public void decreaseCount(){
-        count -= 1;
-
-    }
+//    public void decreaseCount(){
+//        count -= 1;
+//    }
+public int decreaseCount(){
+    count -= 1;
+    return count;
+}
 
 }
