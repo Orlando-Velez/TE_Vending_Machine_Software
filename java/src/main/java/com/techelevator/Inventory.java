@@ -62,15 +62,17 @@ public class Inventory {
                 map.put(slot, gum);
             }
 
-            for(Map.Entry<String, Product> entry : map.entrySet()) {
-                String key = entry.getKey();
-                Product value = entry.getValue();
-                String formatString = String.format("%s: %-15s  $%.2f", key, value.getItemName(), value.getPrice());
-                System.out.println(formatString);
-            }
+//            for(Map.Entry<String, Product> entry : map.entrySet()) {
+//                String key = entry.getKey();
+//                Product value = entry.getValue();
+//                String formatString = String.format("%s: %-15s  $%.2f", key, value.getItemName(), value.getPrice());
+//                System.out.println(formatString);
+//            }
+
 
         }
         return map;
     }
+
 
 }

@@ -3,6 +3,7 @@ package com.techelevator;
 import com.techelevator.view.Menu;
 
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.SQLOutput;
 import java.util.Locale;
 import java.util.Map;
@@ -10,12 +11,12 @@ import java.util.Scanner;
 
 public class VendingMachineCLI extends Inventory {
 
-	private Transactions vendingMachineTransaction;
-	private Inventory vendingMachineInventory;
-	private Chips chips;
-	private Beverages beverages;
-	private Product product;
-	private Inventory map;
+//	private Transactions transactions;
+//	private Inventory vendingMachineInventory;
+//	private Chips chips;
+//	private Beverages beverages;
+//	private Product product;
+//	private Inventory map;
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
@@ -61,7 +62,9 @@ public class VendingMachineCLI extends Inventory {
 						System.out.println();
 						String itemOption = itemCode();
 						if(itemOption.startsWith("A")){
-							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
+							System.out.println();
+							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice() + balanceRemaining);
+							System.out.println();
 						}
 						else if(itemOption.startsWith("B")){
 							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
