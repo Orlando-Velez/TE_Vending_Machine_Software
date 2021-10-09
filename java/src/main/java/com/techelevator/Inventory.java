@@ -1,6 +1,5 @@
 package com.techelevator;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
@@ -11,6 +10,7 @@ import java.util.*;
 public class Inventory {
 
     public static final int START_QUANTITY = 5;
+    Scanner reader = new Scanner(System.in);
 
     File fileInfo = new File("vendingmachine.csv");
 
@@ -62,17 +62,32 @@ public class Inventory {
                 map.put(slot, gum);
             }
 
-//            for(Map.Entry<String, Product> entry : map.entrySet()) {
-//                String key = entry.getKey();
-//                Product value = entry.getValue();
-//                String formatString = String.format("%s: %-15s  $%.2f", key, value.getItemName(), value.getPrice());
-//                System.out.println(formatString);
-//            }
-
 
         }
         return map;
     }
 
+    public String moneyToFeed() {
+
+        System.out.println("Insert money in  whole dollar amounts: $1, $2, $5, or $10");
+        String userInput = reader.nextLine();
+        return userInput;
+    }
+
+    public String itemCode(){
+
+        System.out.println();
+        System.out.println("Please make a selection: ");
+        String userInput = reader.nextLine();
+        return userInput;
+    }
+
+    public BigDecimal balanceRemaining() {
+        BigDecimal moneyIn = new BigDecimal(moneyToFeed());
+        String itemOption = itemCode();
+        BigDecimal costOfItem = new BigDecimal(String.valueOf(getInfoFromLine().get(itemOption).getPrice()));
+        BigDecimal balance = moneyIn.subtract(costOfItem);
+        return balance;
+    }
 
 }

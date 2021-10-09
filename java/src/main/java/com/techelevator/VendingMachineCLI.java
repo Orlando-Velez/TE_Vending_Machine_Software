@@ -2,21 +2,15 @@ package com.techelevator;
 
 import com.techelevator.view.Menu;
 
-import java.io.InputStream;
 import java.math.BigDecimal;
-import java.sql.SQLOutput;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Scanner;
 
-public class VendingMachineCLI extends Inventory {
+public class VendingMachineCLI extends Inventory{
 
-//	private Transactions transactions;
-//	private Inventory vendingMachineInventory;
-//	private Chips chips;
-//	private Beverages beverages;
-//	private Product product;
-//	private Inventory map;
+	private Inventory vendingMachineInventory;
+	private Chips chips;
+	private Beverages beverages;
+	private Product product;
+	private Inventory map;
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
@@ -29,7 +23,8 @@ public class VendingMachineCLI extends Inventory {
 
 
 	private Menu menu;
-	Scanner reader = new Scanner(System.in);
+
+
 
 	public VendingMachineCLI(Menu menu) {
 		this.menu = menu;
@@ -49,10 +44,10 @@ public class VendingMachineCLI extends Inventory {
 				while (true) {
 					String purchase = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
 					if(purchase.equals(PURCHASE_MENU_OPTION_FEED_MONEY)) {
-						String moneyOption = moneyToFeed();
-						String formatString = String.format("Current Money Provided: $%s", moneyOption);
+						System.out.println();
+						String moneyInput = moneyToFeed();
+						String formatString = String.format("Current Money Provided: $%s", moneyInput);
 						System.out.println(formatString);
-
 					}
 					if (purchase.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)){
 						for (String[] display : getFile()) {
@@ -60,22 +55,20 @@ public class VendingMachineCLI extends Inventory {
 							System.out.println(formatString);
 						}
 						System.out.println();
-						String itemOption = itemCode();
-						if(itemOption.startsWith("A")){
-							System.out.println();
-							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice() + balanceRemaining);
-							System.out.println();
+						String choiceInput = itemCode();
+						if(choiceInput.startsWith("A")){
+							System.out.println(getInfoFromLine().get(choiceInput).getItemName() + " $" + getInfoFromLine().get(choiceInput).getPrice());
 						}
-						else if(itemOption.startsWith("B")){
-							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
+						else if(choiceInput.startsWith("B")){
+							System.out.println(getInfoFromLine().get(choiceInput).getItemName() + " $" + getInfoFromLine().get(choiceInput).getPrice());
 						}
-						else if(itemOption.startsWith("C")){
-							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
+						else if(choiceInput.startsWith("C")){
+							System.out.println(getInfoFromLine().get(choiceInput).getItemName() + " $" + getInfoFromLine().get(choiceInput).getPrice());
 						}
-						else if(itemOption.startsWith("D")){
-							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
+						else if(choiceInput.startsWith("D")){
+							System.out.println(getInfoFromLine().get(choiceInput).getItemName() + " $" + getInfoFromLine().get(choiceInput).getPrice());
 						}
-
+						System.out.println("Your Change is: $" + balanceRemaining());
 						}
 //					}	if(itemOption.){
 //						System.out.println("***Item Does Not Exist Returning To Menu***");
@@ -98,22 +91,6 @@ public class VendingMachineCLI extends Inventory {
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
 		cli.run();
-	}
-
-	public String moneyToFeed() {
-
-		System.out.println("Insert money in  whole dollar amounts: $1, $2, $5, or $10");
-		String userInput = reader.nextLine();
-		return userInput;
-
-	}
-
-	public String itemCode(){
-
-		System.out.println();
-		System.out.println("Please make a selection: ");
-		String userInput = reader.nextLine();
-		return userInput;
 	}
 
 
