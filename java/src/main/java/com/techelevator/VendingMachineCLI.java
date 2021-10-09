@@ -5,14 +5,17 @@ import com.techelevator.view.Menu;
 import java.io.InputStream;
 import java.sql.SQLOutput;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Scanner;
 
 public class VendingMachineCLI extends Inventory {
 
 	private Transactions vendingMachineTransaction;
+	private Inventory vendingMachineInventory;
 	private Chips chips;
 	private Beverages beverages;
 	private Product product;
+	private Inventory map;
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
@@ -55,9 +58,19 @@ public class VendingMachineCLI extends Inventory {
 							String formatString = String.format("%s: %-18s $%-5s (%s) Quantity:%d", display[0], display[1], display[2], display[3], START_QUANTITY);
 							System.out.println(formatString);
 						}
+						System.out.println();
 						String itemOption = itemCode();
-						if(itemOption.startsWith("C")){
-							System.out.println();
+						if(itemOption.startsWith("A")){
+							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
+						}
+						else if(itemOption.startsWith("B")){
+							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
+						}
+						else if(itemOption.startsWith("C")){
+							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
+						}
+						else if(itemOption.startsWith("D")){
+							System.out.println(getInfoFromLine().get(itemOption).getItemName() + " $" + getInfoFromLine().get(itemOption).getPrice());
 						}
 
 						}
