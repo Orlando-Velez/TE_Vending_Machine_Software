@@ -8,8 +8,9 @@ import java.util.*;
 
 
 public class Inventory {
+
     BigDecimal balance = BigDecimal.ZERO;
-    Integer startQuantity = 5;
+    int startQuantity = 5;
 
     Scanner reader = new Scanner(System.in);
 
@@ -73,8 +74,13 @@ public class Inventory {
 
         System.out.println("Insert money in  whole dollar amounts: $1, $2, $5, or $10");
         String userInput = reader.nextLine();
-        BigDecimal money = new BigDecimal(userInput);
-        balance = balance.add(money);
+        if(!userInput.equals("1") && !userInput.equals("2") && !userInput.equals("5") && !userInput.equals("10")){
+            System.out.println("***Invalid Whole Dollar Amount***");
+        }
+        else {
+            BigDecimal money = new BigDecimal(userInput);
+            balance = balance.add(money);
+        }
         return balance;
     }
 
@@ -83,6 +89,7 @@ public class Inventory {
         System.out.println();
         System.out.println("Please make a selection: ");
         String userInput = reader.nextLine();
+
         return userInput;
     }
 
@@ -91,19 +98,11 @@ public class Inventory {
         return balance;
     }
 
-    public Integer stockQuantity(Product quantity) {
-       int stock = quantity.getCount();
-       return stock;
+    public int getStartQuantity() {
+        return startQuantity;
     }
-//    public Integer decrease(Product quantity) {
-//        int stock = quantity.decreaseCount();
-//        return stock;
-//    }
-    public int get() {return ;}
-public int decreaseCount(){
-    startQuantity -= 1;
-    return startQuantity;
-}
 
-
+    public void decreaseCount() {
+        startQuantity -= 1;
+    }
 }

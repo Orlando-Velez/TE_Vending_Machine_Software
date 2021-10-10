@@ -21,7 +21,7 @@ public class Product {
         this.itemName = itemName;
         this.price = price;
         this.itemType = itemType;
-        this.count = 5;
+//        this.count = 5;
     }
 
     //Getters
@@ -29,14 +29,10 @@ public class Product {
     public String getItemName(){return itemName;}
     public BigDecimal getPrice(){return price;}
     public String getItemType() {return itemType;}
-    public int getCount(){return count;}
-
+//    public int getCount(){return count;}
+//
 //    public void decreaseCount(){
 //        count -= 1;
 //    }
-public int decreaseCount(){
-    count -= 1;
-    return count;
-}
 
 }
