@@ -12,6 +12,7 @@ public class Product {
     private BigDecimal price;
     private String itemType;
     private int count;
+    private String message;
 
     //Constructor
 
@@ -24,15 +25,19 @@ public class Product {
 //        this.count = 5;
     }
 
+
     //Getters
     public String getLocation() {return location;}
     public String getItemName(){return itemName;}
     public BigDecimal getPrice(){return price;}
     public String getItemType() {return itemType;}
+    public String getMessage() {return message;}
 //    public int getCount(){return count;}
 //
 //    public void decreaseCount(){
 //        count -= 1;
 //    }
-
+public String message() {
+    return "Stuff";
+}
 }

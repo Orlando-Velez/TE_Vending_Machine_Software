@@ -2,11 +2,13 @@ package com.techelevator;
 
 import com.techelevator.view.Menu;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 
 public class VendingMachineCLI  extends Inventory {
 
 	private Inventory vendingMachineInventory = new Inventory();
+	private Beverages beverages;
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
@@ -19,7 +21,6 @@ public class VendingMachineCLI  extends Inventory {
 
 
 	private Menu menu;
-
 
 
 	public VendingMachineCLI(Menu menu) {
@@ -44,6 +45,13 @@ public class VendingMachineCLI  extends Inventory {
 						moneyToFeed();
 						String formatString = String.format("Current Money Provided: $%s", balance);
 						System.out.println(formatString);
+
+						try {
+							logFile(String.format("%s FEED MONEY: \\$%s", dayTime(), balance));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+
 					}
 					if (purchase.equals(PURCHASE_MENU_OPTION_SELECT_PRODUCT)){
 						for (String[] display : getFile()) {
@@ -79,11 +87,24 @@ public class VendingMachineCLI  extends Inventory {
 
 						System.out.println();
 						System.out.println("Your Remaining Balance is: $" + balanceRemaining(getInfoFromLine().get(choiceInput)));
+
+						try {
+							logFile(String.format("%s %s %s \\$%s", dayTime(), getInfoFromLine().get(choiceInput).getItemName(), choiceInput, balance));
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 						}
 //					}	if(itemOption.){
 //						System.out.println("***Item Does Not Exist Returning To Menu***");
 					if(purchase.equals(PURCHASE_MENU_OPTION_FINISH_TRANSACTIONS)){
-
+						System.out.println("Your Change is:");
+						System.out.println(changeBack());
+//						try {
+//							logFile(getInfoFromLine().get(choiceInput).getItemName());
+//						} catch (IOException e) {
+//							e.printStackTrace();
+//						}
+						System.exit(1);
 					}
 
 				}

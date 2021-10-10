@@ -1,8 +1,10 @@
 package com.techelevator;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 
@@ -65,7 +67,6 @@ public class Inventory {
                 map.put(slot, gum);
             }
 
-
         }
         return map;
     }
@@ -105,4 +106,38 @@ public class Inventory {
     public void decreaseCount() {
         startQuantity -= 1;
     }
+
+    public Map changeBack() {
+        Map<String, BigDecimal> map = new HashMap<>();
+        map.put("Quarters", balance.divideToIntegralValue(BigDecimal.valueOf(.25)));
+        map.put("Dimes", balance.subtract(balance.divideToIntegralValue(BigDecimal.valueOf(.25)).divide(BigDecimal.valueOf(4))).divideToIntegralValue(BigDecimal.valueOf(.10)));
+        map.put("Nickels", balance.subtract(map.get("Quarters").divide(BigDecimal.valueOf(4)).add(map.get("Dimes").divide(BigDecimal.valueOf(10)))).divideToIntegralValue(BigDecimal.valueOf(.05)));
+        return map;
+
+    }
+
+
+    public String dayTime() {
+        DateTimeFormatter currentDay = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        return currentDay.format(now);
+    }
+
+    List<String> list = new ArrayList<>();
+
+    public List<String> getList(){
+        return this.list;
+    }
+
+    public static void logFile(String message) throws IOException {
+        File log = new File("log.txt");
+        boolean append = log.exists() ? true : false;
+        try(PrintWriter writer = new PrintWriter(new FileOutputStream(log, append))){
+                writer.println(message);
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("File Not Found: " + ex.getMessage());
+        }
+    }
+
 }

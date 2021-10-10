@@ -10,7 +10,7 @@ public class Beverages extends Product implements Sellable {
     }
 
         @Override
-        public String message () {
-            return "Glug Glug, Yum!";
+        public String message() {
+           return "Glug Glug, Yum!";
         }
 }
